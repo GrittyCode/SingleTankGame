@@ -1,26 +1,40 @@
 #pragma once
+#
+#include "Component.h"
+
+class Transform2D;
+
+namespace OBJ
+{
+	enum class OBJ_TYPE
+	{
+		PLAYER,
+		BULLET,
+		ENEMY,
+		BRICK,
+		OBJ_TYPE_END
+	};
+}
+
 class CObject
 {
-private:
-	CObject(const CObject& obj);
-	CObject* operator = (CObject* obj)
-	{return nullptr; }
-	CObject() {}
-	~CObject() {}
+//METHOD
 public:
-	static CObject* GetInst()
-{
-if (m_pInst == NULL)
-m_pInst = new CObject;
-return m_pInst;	
-}
-void DestroyInst()
-{
-delete m_pInst; 
-m_pInst = nullptr; 
-}
-private:
-	static CObject* m_pInst;
+	bool AddComponent(wstring key, Component* component);
+	Transform2D* GetTransform();
+//LIFECYCLE
+public:
+	
+	virtual void Init() = 0;
+	virtual void Update() = 0;
+	virtual int LateUpdate() = 0;
+	virtual void Render() = 0;
+	
+protected:
+	OBJ::OBJ_TYPE m_type;
+	map<wstring ,Component*> m_componentMap;
+
+	Transform2D* transform;
 };
 
 	

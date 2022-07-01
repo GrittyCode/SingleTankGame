@@ -139,18 +139,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoxCollider2D.h" />
     <ClInclude Include="CObject.h" />
+    <ClInclude Include="CObjectManager.h" />
+    <ClInclude Include="Collider2D.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="CPlayer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingleTankGame.h" />
+    <ClInclude Include="stdfx.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoxCollider2D.cpp" />
     <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="CObjectManager.cpp" />
+    <ClCompile Include="Collider2D.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="SingleTankGame.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SingleTankGame.rc" />

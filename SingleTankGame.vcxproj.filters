@@ -5,21 +5,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="01Main">
-      <UniqueIdentifier>{13c89335-d8e7-4cf0-ad7e-7a1431e86baf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="02Struct">
-      <UniqueIdentifier>{37bbd783-1189-4cc8-aaaa-85b5c251073a}</UniqueIdentifier>
+    <Filter Include="05_ObjectManager">
+      <UniqueIdentifier>{51d47eeb-03b5-4742-96a9-8cb559091433}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03Define">
+    <Filter Include="04_Object">
+      <UniqueIdentifier>{8b413645-2295-48d7-a370-225e3bbd9d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_Define">
       <UniqueIdentifier>{92d6618b-9f37-4456-858a-81882a625b77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04Object">
-      <UniqueIdentifier>{8b413645-2295-48d7-a370-225e3bbd9d09}</UniqueIdentifier>
+    <Filter Include="02_Struct">
+      <UniqueIdentifier>{37bbd783-1189-4cc8-aaaa-85b5c251073a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Main">
+      <UniqueIdentifier>{13c89335-d8e7-4cf0-ad7e-7a1431e86baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06_Component">
+      <UniqueIdentifier>{c7abc42b-1d0b-4b81-9c02-9cbb8bb3a9b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06_Component\Collider">
+      <UniqueIdentifier>{47102667-f44f-4ddc-bd48-b6aeabe19668}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,19 +42,40 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SingleTankGame.h">
-      <Filter>01Main</Filter>
+      <Filter>01_Main</Filter>
     </ClInclude>
     <ClInclude Include="Struct.h">
-      <Filter>02Struct</Filter>
+      <Filter>02_Struct</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>03Define</Filter>
+      <Filter>03_Define</Filter>
     </ClInclude>
     <ClInclude Include="Function.h">
-      <Filter>03Define</Filter>
+      <Filter>03_Define</Filter>
     </ClInclude>
     <ClInclude Include="CObject.h">
-      <Filter>04Object</Filter>
+      <Filter>04_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjectManager.h">
+      <Filter>05_ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>04_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>06_Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>06_Component</Filter>
+    </ClInclude>
+    <ClInclude Include="stdfx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider2D.h">
+      <Filter>06_Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider2D.h">
+      <Filter>06_Component\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,10 +93,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingleTankGame.cpp">
-      <Filter>01Main</Filter>
+      <Filter>01_Main</Filter>
     </ClCompile>
     <ClCompile Include="CObject.cpp">
-      <Filter>04Object</Filter>
+      <Filter>04_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjectManager.cpp">
+      <Filter>05_ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>04_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>06_Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>06_Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider2D.cpp">
+      <Filter>06_Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider2D.cpp">
+      <Filter>06_Component\Collider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
