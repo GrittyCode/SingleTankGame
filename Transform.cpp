@@ -2,13 +2,19 @@
 #include "Transform.h"
 
 
+Transform2D::Transform2D(Vector2 posVec, Vector2 sizeVec)
+{
+	m_posVec = posVec;
+	m_SizeVec = sizeVec;
+}
+
 Transform2D::Transform2D(Vector2 posVec, float xSize, float ySize,  float fAngle, float fSpeed)
 {
 	m_posVec = posVec;
 	m_fAngle = fAngle;
 	m_fSpeed = fSpeed;
-	this->m_x = xSize;
-	this->m_y = ySize;
+	m_SizeVec.x = xSize;
+	m_SizeVec.y = ySize;
 
 }
 
@@ -16,8 +22,8 @@ Transform2D::Transform2D(float x, float y, float xSize, float ySize, float fAngl
 {
 	this->m_posVec.x = x;
 	this->m_posVec.y = y;
-	this->m_x = xSize;
-	this->m_y = ySize;
+	m_SizeVec.x = xSize;
+	m_SizeVec.y = ySize;
 	m_fAngle = fAngle;
 	m_fSpeed = fSpeed;
 }
@@ -25,8 +31,8 @@ Transform2D::Transform2D(float x, float y, float xSize, float ySize, float fAngl
 Transform2D* Transform2D::Create(Vector2 posVec, float xSize, float ySize, float fAngle, float fSpeed)
 {
 	m_posVec = posVec;
-	this->m_x = xSize;
-	this->m_y = ySize;
+	m_SizeVec.x = xSize;
+	m_SizeVec.y = ySize;
 	m_fAngle = fAngle;
 	m_fSpeed = fSpeed;
 	return this;
@@ -56,13 +62,13 @@ void Transform2D::SetPosition(Vector2 vec)
 }
 void Transform2D::SetSizeVec(Vector2 vec)
 {
-	m_x = vec.x;
-	m_y = vec.y;
+	m_SizeVec.x = vec.x;
+	m_SizeVec.y = vec.y;
 }
-void Transform2D::SetSizeVec(float xSize, float ySize)
+void Transform2D::SetSizeVec(float xSize, float ySize = 0.0f)
 {
-	m_x = xSize;
-	m_y = ySize;
+	m_SizeVec.x = xSize;
+	m_SizeVec.y = ySize;
 }
 Vector2 Transform2D::GetLookVec()
 {
@@ -114,20 +120,20 @@ float Transform2D::GetRotationY() const
 
 float Transform2D::GetRadius() const
 {
-	return m_x;
+	return m_SizeVec.x;
 }
 
 Vector2 Transform2D::GetSizeVec() const
 {
-	return Vector2(m_x, m_y);
+	return Vector2(m_SizeVec.x, m_SizeVec.y);
 }
 
 float Transform2D::GetSizeX() const
 {
-	return m_x;
+	return m_SizeVec.x;
 }
 
 float Transform2D::GetSizeY() const
 {
-	return m_y;
+	return m_SizeVec.y;
 }

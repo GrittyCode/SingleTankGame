@@ -5,6 +5,7 @@ class Transform2D : public Component
 //Method
 public:
 	Transform2D() {};
+	Transform2D(Vector2 posVec, Vector2 sizeVec);
 	Transform2D(Vector2 posVec, float xSize, float ySize, float fAngle, float fSpeed);
 	Transform2D(float x, float y, float xSize, float ySize, float fAngle, float fSpeed);
 	/// <summary>
@@ -42,9 +43,8 @@ private:
 	Vector3 m_rotVec;
 	//현재 어느 위치를 바라보고 있는지 확인하는 벡터
 	Vector2 m_LookVec;
+	Vector2 m_SizeVec;
 	float m_fAngle = 0;
 	float m_fSpeed = 0;
-	float m_x = 0;
-	float m_y = 0;
 };
 

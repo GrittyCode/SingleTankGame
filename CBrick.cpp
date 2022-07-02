@@ -20,7 +20,6 @@ CBrick::~CBrick()
 
 void CBrick::Init()
 {
-	AddComponent(L"Transform", transform = new Transform2D(0, 0, 10, 10, 0, 0));
 }
 
 CBrick* CBrick::Create(Vector2 vecPos, Vector2 vecSize)
