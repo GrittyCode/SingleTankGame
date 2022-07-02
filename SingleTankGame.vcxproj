@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollider2D.h" />
+    <ClInclude Include="CBrick.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CObjectManager.h" />
     <ClInclude Include="Collider2D.h" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollider2D.cpp" />
+    <ClCompile Include="CBrick.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CObjectManager.cpp" />
     <ClCompile Include="Collider2D.cpp" />

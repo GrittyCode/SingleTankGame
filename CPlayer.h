@@ -1,14 +1,18 @@
 #pragma once
-
 #include "CObject.h"
+
+class CObject;
+
 class CPlayer : public CObject
 {
 public:
-	CPlayer() { m_type = OBJ::OBJ_TYPE::PLAYER; }
+	CPlayer();
 	~CPlayer() {}
 public:
+	void Init() {};
+	static CPlayer* Create();
 	void Update();
 	int LateUpdate();
-	void Render();
+	void Render(HDC hdc);
 };
 

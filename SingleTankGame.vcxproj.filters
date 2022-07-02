@@ -77,6 +77,9 @@
     <ClInclude Include="BoxCollider2D.h">
       <Filter>06_Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="CBrick.h">
+      <Filter>04_Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SingleTankGame.rc">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="BoxCollider2D.cpp">
       <Filter>06_Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CBrick.cpp">
+      <Filter>04_Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #pragma once
-#
+
 #include "Component.h"
 
 class Transform2D;
@@ -20,21 +20,21 @@ class CObject
 {
 //METHOD
 public:
+	CObject();
+	CObject(HDC hdc);
 	bool AddComponent(wstring key, Component* component);
 	Transform2D* GetTransform();
 //LIFECYCLE
 public:
-	
 	virtual void Init() = 0;
 	virtual void Update() = 0;
 	virtual int LateUpdate() = 0;
-	virtual void Render() = 0;
+	virtual void Render(HDC hdc) = 0;
 	
 protected:
 	OBJ::OBJ_TYPE m_type;
 	map<wstring ,Component*> m_componentMap;
-
-	Transform2D* transform;
+	Transform2D* transform = nullptr;
 };
 
 	

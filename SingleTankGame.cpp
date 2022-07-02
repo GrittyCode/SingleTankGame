@@ -2,21 +2,35 @@
 // SingleTankGame.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
-#include "framework.h"
+#include "stdfx.h"
 #include "SingleTankGame.h"
+#include "CObjectManager.h"
 
 #define MAX_LOADSTRING 100
+
+
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+HWND g_hWnd;
+
+
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+
+void   Update();
+void   LateUpdate();
+void   Render();
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -42,8 +56,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_SINGLETANKGAME));
 
     MSG msg;
-
+    CObjectManager::GetInst();
+    CObjectManager::GetInst()->Init(g_hWnd);
+    CObjectManager::GetInst()->LateInit();
     // 기본 메시지 루프입니다:
+
     while (true)
     {
         if(PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -53,12 +70,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
             {
                 TranslateMessage(&msg);
-                    DispatchMessage(&msg);
+                DispatchMessage(&msg);
             }
         }
         else
         {
-
+            Update();
+            LateUpdate();
+            Render();
         }
     }
 
@@ -109,6 +128,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   
+   g_hWnd = hWnd;
 
    if (!hWnd)
    {
@@ -133,6 +154,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+
     switch (message)
     {
     case WM_COMMAND:
@@ -146,6 +168,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
+                CObjectManager::GetInst()->DestroyInst();
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
@@ -187,4 +210,21 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+void Update()
+{
+    CObjectManager::GetInst()->Update();
+}
+
+void LateUpdate()
+{
+    CObjectManager::GetInst()->LateUpdate();
+
+}
+
+void Render()
+{
+    CObjectManager::GetInst()->Render();
+
 }

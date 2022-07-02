@@ -12,6 +12,7 @@
 #include "CObjectManager.h"
 #include "CObject.h"
 #include "CPlayer.h"
+#include "CBrick.h"
 
 #include "Component.h"
 #include "Collider2D.h"

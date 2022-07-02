@@ -1,6 +1,13 @@
 #include "stdfx.h"
 #include "CObject.h"
 
+CObject::CObject()
+{
+	AddComponent(L"Transform", new Transform2D());
+	map<wstring, Component*>::iterator it = m_componentMap.find(L"Transform");
+
+	transform = dynamic_cast<Transform2D*>((*it).second);
+}
 
 //componet insert method
 bool CObject::AddComponent(wstring key, Component* component)
@@ -26,7 +33,8 @@ Transform2D* CObject::GetTransform()
 	{
 		Transform2D* tf = dynamic_cast<Transform2D*>((it->second));
 		//찾았다면
-		return tf;
+		transform = tf;
+		return transform;
 	}
 	
 	return nullptr;
