@@ -1,10 +1,10 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+#include <math.h>
 
-
-#define M_PI 3.141592
-#define DEGREETORADIAN(t) (t) / 180.0 * M_PI
-#define RADIANTODEGREE(t) (M_PI / 180.0f) * (t)
+#define DEGREETORADIAN(t) ((t) * M_PI / 180.0)
+#define RADIANTODEGREE(t) ((180.0 / M_PI) * (t))
 
 
 #define OBJ_ERR -1

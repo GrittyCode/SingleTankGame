@@ -20,8 +20,8 @@ public:
 public:
 	void Init() {};
 	Vector2 ReturnMyVecPos();
-	void virtual Update() {};
-	void virtual LateUpdate() {};
+	int virtual Update() { return 0; };
+	int virtual LateUpdate() { return 0; };
 	bool virtual CollisionWith(Collider2D* col) { return false; };
 //VARIABLE
 protected: 

@@ -3,8 +3,8 @@
 
 typedef struct MyVector2
 {
-	float x;
-	float y;
+	float x = 0.0f;
+	float y = 0.0f;
 	MyVector2() { x = 0.0f; y = 0.0f; }
 	MyVector2(float p_x, float p_y) : x(p_x), y(p_y) {}
 

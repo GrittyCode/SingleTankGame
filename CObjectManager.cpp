@@ -46,22 +46,26 @@ void CObjectManager::LateInit()
 	Vector2 posVec = { (float)rt.right / 2, (float)rt.bottom - 20};
 	Vector2 sizeVec = { 70,0 };
 	player = CPlayer::Create(posVec, sizeVec);
+	player->Init();
 
 }
 
 void CObjectManager::Update()
 {
+	player->Update();
 }
 
 void CObjectManager::LateUpdate()
 {
+	player->LateUpdate();
 }
 
 void CObjectManager::Render()
 {
-	Rectangle(m_hBitDC, -1, -1, rt.right + 1, rt.bottom + 1);
+	Rectangle(m_hdc, -1, -1, rt.right + 1, rt.bottom + 1);
 
-	player->Render(m_hBitDC);
+	player->Render(m_hdc);
+
 
 	for (int i = (int)OBJ::OBJ_TYPE::BRICK; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
 	{
@@ -71,11 +75,11 @@ void CObjectManager::Render()
 
 		for(list<CObject*>::iterator it = iter_map->second.begin(); it != iter_map->second.end(); ++it)
 		{
-			(*it)->Render(m_hBitDC);
+			(*it)->Render(m_hdc);
 		}
 	}
 
-	BitBlt(m_hdc, 0, 0, rt.right, rt.bottom, m_hBitDC, 0, 0, SRCCOPY);
+	//BitBlt(m_hdc, 0, 0, rt.right, rt.bottom, m_hBitDC, 0, 0, SRCCOPY);
 }
 
 std::map<OBJ::OBJ_TYPE, std::list<CObject*>> CObjectManager::GetPointObjMap()

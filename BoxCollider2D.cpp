@@ -8,12 +8,15 @@ BoxCollider2D::BoxCollider2D(float xSize, float ySize, CObject* obj)
 	m_Object = obj;
 }
 
-void BoxCollider2D::Update()
+int BoxCollider2D::Update()
 {
+	return 0;
 }
 
-void BoxCollider2D::LateUpdate()
+int BoxCollider2D::LateUpdate()
 {
+	return 0;
+
 }
 
 bool BoxCollider2D::CollisionWith(Collider2D* col)

@@ -27,7 +27,7 @@ public:
 //LIFECYCLE
 public:
 	virtual void Init() = 0;
-	virtual void Update() = 0;
+	virtual int Update() = 0;
 	virtual int LateUpdate() = 0;
 	virtual void Render(HDC hdc) = 0;
 	

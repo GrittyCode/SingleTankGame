@@ -80,6 +80,12 @@
     <ClInclude Include="CBrick.h">
       <Filter>04_Object</Filter>
     </ClInclude>
+    <ClInclude Include="InputKeyBoard.h">
+      <Filter>06_Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>04_Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SingleTankGame.rc">
@@ -120,6 +126,12 @@
       <Filter>06_Component\Collider</Filter>
     </ClCompile>
     <ClCompile Include="CBrick.cpp">
+      <Filter>04_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="InputKeyBoard.cpp">
+      <Filter>06_Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
       <Filter>04_Object</Filter>
     </ClCompile>
   </ItemGroup>

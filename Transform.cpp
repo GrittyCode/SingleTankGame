@@ -6,6 +6,7 @@ Transform2D::Transform2D(Vector2 posVec, Vector2 sizeVec)
 {
 	m_posVec = posVec;
 	m_SizeVec = sizeVec;
+	SetLookVec(m_fAngle);
 }
 
 Transform2D::Transform2D(Vector2 posVec, float xSize, float ySize,  float fAngle, float fSpeed)
@@ -15,7 +16,7 @@ Transform2D::Transform2D(Vector2 posVec, float xSize, float ySize,  float fAngle
 	m_fSpeed = fSpeed;
 	m_SizeVec.x = xSize;
 	m_SizeVec.y = ySize;
-
+	SetLookVec(m_fAngle);
 }
 
 Transform2D::Transform2D(float x, float y, float xSize, float ySize, float fAngle, float fSpeed)
@@ -26,6 +27,7 @@ Transform2D::Transform2D(float x, float y, float xSize, float ySize, float fAngl
 	m_SizeVec.y = ySize;
 	m_fAngle = fAngle;
 	m_fSpeed = fSpeed;
+	SetLookVec(m_fAngle);
 }
 
 Transform2D* Transform2D::Create(Vector2 posVec, float xSize, float ySize, float fAngle, float fSpeed)
@@ -35,6 +37,7 @@ Transform2D* Transform2D::Create(Vector2 posVec, float xSize, float ySize, float
 	m_SizeVec.y = ySize;
 	m_fAngle = fAngle;
 	m_fSpeed = fSpeed;
+	SetLookVec(m_fAngle);
 	return this;
 }
 
@@ -136,4 +139,9 @@ float Transform2D::GetSizeX() const
 float Transform2D::GetSizeY() const
 {
 	return m_SizeVec.y;
+}
+
+float Transform2D::GetAngle() const
+{
+	return m_fAngle;
 }

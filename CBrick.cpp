@@ -20,6 +20,7 @@ CBrick::~CBrick()
 
 void CBrick::Init()
 {
+	
 }
 
 CBrick* CBrick::Create(Vector2 vecPos, Vector2 vecSize)
@@ -28,8 +29,9 @@ CBrick* CBrick::Create(Vector2 vecPos, Vector2 vecSize)
 	return brick;
 }
 
-void CBrick::Update()
+int CBrick::Update()
 {
+	return 0;
 }
 
 int CBrick::LateUpdate()
@@ -43,8 +45,5 @@ void CBrick::Render(HDC hdc)
 
 	float xSize = transform->GetSizeX() / 2;
 	float ySize = transform->GetSizeY();
-
-	printf("내 X좌표는 이거야->%lf\n", posVec.x);
-	printf("내 x사이즈는 이거야->%lf", xSize);
 	Rectangle(hdc, posVec.x - xSize, posVec.y - ySize, posVec.x + xSize, posVec.y + ySize);
 }

@@ -11,8 +11,8 @@ public:
 	//LIFE CYCLE
 public:
 	void Init() {};
-	void Update();
-	void LateUpdate();
+	int Update();
+	int LateUpdate();
 	bool CollisionWith(Collider2D* col);
 private:
 	float m_fxSize;

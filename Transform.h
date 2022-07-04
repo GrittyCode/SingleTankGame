@@ -31,11 +31,12 @@ public:
 	Vector2 GetSizeVec() const;
 	float GetSizeX() const;
 	float GetSizeY() const;
+	float GetAngle() const;
 //LIFE CYCLE
 public :
 	void Init() {};
-	void Update() {};
-	void LateUpdate() {};
+	int Update() { return 0; };
+	int LateUpdate() { return 0; };
 private:
 	//위치 벡터
 	Vector2 m_posVec;
@@ -44,7 +45,7 @@ private:
 	//현재 어느 위치를 바라보고 있는지 확인하는 벡터
 	Vector2 m_LookVec;
 	Vector2 m_SizeVec;
-	float m_fAngle = 0;
-	float m_fSpeed = 0;
+	float m_fAngle = 0.0f;
+	float m_fSpeed = 0.0f;
 };
 
