@@ -23,6 +23,7 @@ public:
 	virtual int Update() override;
 	virtual int LateUpdate() override;
 	virtual void Init() override;
+	virtual void Render(HDC hdc) override {};
 	int KeyEventUpdate();
 private:
 	static char m_str[256];

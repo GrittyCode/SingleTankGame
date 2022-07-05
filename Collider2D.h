@@ -22,6 +22,7 @@ public:
 	Vector2 ReturnMyVecPos();
 	int virtual Update() { return 0; };
 	int virtual LateUpdate() { return 0; };
+	void virtual Render(HDC hdc) { return; };
 	bool virtual CollisionWith(Collider2D* col) { return false; };
 //VARIABLE
 protected: 

@@ -6,16 +6,15 @@ class CObjectManager
 {
 	SINGLETONE(CObjectManager)
 public:
-	
 	void Init(HWND hWnd);
 	void LateInit();
 	void Update();
 	void LateUpdate();
 	void Render();
-
 	HDC m_hdc;
 	HWND m_hwnd;
 	map <OBJ::OBJ_TYPE,list<CObject*>>* GetPointObjMap();
+	list<CObject*>* GetMapKey(OBJ::OBJ_TYPE key);
 private:
 	float delayTime = 1.2f;
 	float curTime = 0.0f;

@@ -48,3 +48,13 @@ Transform2D* CObject::GetTransform()
 	return nullptr;
 }
 
+int CObject::ReturnObjState()
+{
+	return m_Obj_Collision;
+}
+
+void CObject::SetObjState(int obj_state)
+{
+	m_Obj_Collision = OBJ_COLLISION;
+}
+

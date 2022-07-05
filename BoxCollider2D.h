@@ -8,11 +8,14 @@ public:
 	BoxCollider2D() { SetColliderType(COLLIDER_TYPE::BOX_COLLIDER);  }
 	BoxCollider2D(float xSize, float ySize, CObject* obj);
 	~BoxCollider2D() {};
+	float GetXSize();
+	float GetYSize();
 	//LIFE CYCLE
 public:
 	void Init() {};
 	int Update();
 	int LateUpdate();
+	void Render(HDC hdc);
 private:
 	//중점 + m_fxsize , 중점 - m_fxsize, 중점 + m_fySize, 중점 - m_fySize 안에 겹쳐있는 콜라이더가 있을 시 충돌됨.
 	//충돌된 경우(콜리전매니저가 처리) m_Obj_Collision = OBJ_COLLISION 상태로 바꿔준다. 그렇다면 CollisionManager의 LateUpdate에서 return 값을 줌으로써

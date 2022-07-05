@@ -9,6 +9,11 @@ CircleCollider2D::CircleCollider2D(float radius, CObject* obj)
 	m_Object = obj;
 }
 
+float CircleCollider2D::GetRadius()
+{
+	return m_radius;
+}
+
 int CircleCollider2D::Update()
 {
 	return 0;

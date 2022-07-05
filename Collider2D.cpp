@@ -6,7 +6,7 @@
 
 Vector2 Collider2D::ReturnMyVecPos()
 {
-	return Vector2();
+	return m_Object->GetTransform()->GetPosition();
 }
 
 

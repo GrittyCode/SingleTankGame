@@ -77,7 +77,7 @@ int CPlayer::LateUpdate() //충돌 처리된 상태에 따라 define된 OBJ_ERR, OBJ_NOEVEN
 	{
 		(*it).second->LateUpdate();
 	}
-	return 0;
+	return ReturnObjState();
 }
 
 void CPlayer::Render(HDC hdc)
@@ -86,11 +86,11 @@ void CPlayer::Render(HDC hdc)
 	float radius = transform->GetRadius();
 	bench = (transform->GetLookVec() * radius) + posVec;
 
-	MoveToEx(hdc, bench.x, bench.y, nullptr);
+	MoveToEx(hdc, (int)bench.x, (int)bench.y, nullptr);
 
 	bench = (transform->GetLookVec() * 1.5f * radius) + posVec;
 
-	LineTo(hdc, bench.x, bench.y);
+	LineTo(hdc, (int)bench.x, (int)bench.y);
 
 
 	Ellipse(hdc, (int)(posVec.x - radius), (int)(posVec.y - radius), (int)(posVec.x + radius), (int)(posVec.y + radius));

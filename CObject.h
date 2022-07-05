@@ -26,6 +26,8 @@ public:
 	bool AddComponent(wstring key, Component* component);
 	map<wstring, Component*>* GetComponentList();
 	Transform2D* GetTransform();
+	int ReturnObjState();
+	void SetObjState(int obj_state);
 //LIFECYCLE
 public:
 	virtual void Init() = 0;

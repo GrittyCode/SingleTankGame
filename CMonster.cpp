@@ -9,6 +9,7 @@ CMonster::CMonster(Vector2 posVec, Vector2 lookVec, float m_speed)
 	transform->SetLookVec(lookVec);
 	transform->SetSpeed(m_speed);
 	degree = transform->GetAngle();
+	AddComponent(L"BoxCollide2D", new BoxCollider2D(transform->GetSizeVec().x, transform->GetSizeVec().y, this));
 }
 
 CMonster* CMonster::Create(Vector2 posVec, Vector2 lookVec, float speed)
@@ -26,6 +27,7 @@ int CMonster::Update()
 	degree += 60.0f * TimeManager::GetInst()->GetDeltaTime();
 	if (degree >= 359.0f)
 		degree = 0.0f;
+
 	for (map<wstring, Component*>::iterator it = m_componentMap.begin(); it != m_componentMap.end(); ++it)
 	{
 		(*it).second->Update();
@@ -35,16 +37,27 @@ int CMonster::Update()
 
 int CMonster::LateUpdate()
 {
+	m_fCurTime += TimeManager::GetInst()->GetDeltaTime();
+	if (m_fCurTime > m_fLiveTime)
+	{
+		SetObjState(OBJ_COLLISION);
+		return ReturnObjState();
+	}
 	for (map<wstring, Component*>::iterator it = m_componentMap.begin(); it != m_componentMap.end(); ++it)
 	{
 		(*it).second->LateUpdate();
 	}
-	return 0;
+	return ReturnObjState();
 }
 
 
 void CMonster::Render(HDC hdc)
 {
+	for (map<wstring, Component*>::iterator it = m_componentMap.begin(); it != m_componentMap.end(); ++it)
+	{
+		(*it).second->Render(hdc);
+	}
+
 	float fDegreeInterval = 360.f / (float)5;
 	float fDegree = degree;
 

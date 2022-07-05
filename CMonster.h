@@ -16,5 +16,7 @@ public:
 	virtual void Render(HDC hdc) override;
 private:
 	float degree;
+	float m_fLiveTime = 8.0f;
+	float m_fCurTime = 0.0f;
 };
 

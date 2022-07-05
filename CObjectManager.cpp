@@ -6,6 +6,7 @@ CObjectManager* CObjectManager::m_pInst = nullptr;
 
 void CObjectManager::Init(HWND hWnd)
 {
+	CCollisionManager::GetInst()->Init();
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 	SetWindowPos(hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 	m_hwnd = hWnd;
@@ -63,6 +64,7 @@ void CObjectManager::LateInit()
 	Vector2 sizeVec = { 70,0 };
 	player = CPlayer::Create(posVec, sizeVec);
 	player->Init();
+	
 
 }
 
@@ -76,7 +78,7 @@ void CObjectManager::Update()
 	{
 		int randomX = rand() % (rt.right - 80) + 80;
 		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter_map = m_pMapObj.find(OBJ::OBJ_TYPE::ENEMY);
-		(*iter_map).second.push_back(CMonster::Create(Vector2(randomX,rt.top + 100), Vector2(0.0f, 1.0f), 100.0f));
+		(*iter_map).second.push_back(CMonster::Create(Vector2((float)randomX,rt.top + 100), Vector2(0.0f, 1.0f), 100.0f));
 		curTime = 0.0f;
 	}
 
@@ -96,6 +98,41 @@ void CObjectManager::Update()
 void CObjectManager::LateUpdate()
 {
 	player->LateUpdate();
+	
+	for (int i = (int)OBJ::OBJ_TYPE::BULLET; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
+	{
+		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter_map = m_pMapObj.find((OBJ::OBJ_TYPE)i);
+		if (iter_map == m_pMapObj.end())
+			continue;
+
+		for (list<CObject*>::iterator it = iter_map->second.begin(); it != iter_map->second.end(); ++it)
+		{
+			(*it)->LateUpdate();
+		}
+	}
+
+	//충돌 처리 플래그 
+	CCollisionManager::GetInst()->LateUpdate(OBJ::OBJ_TYPE::BULLET, OBJ::OBJ_TYPE::ENEMY);
+	//CCollisionManager::GetInst()->LateUpdate(OBJ::OBJ_TYPE::ENEMY, OBJ::OBJ_TYPE::BRICK);
+
+	for (int i = (int)OBJ::OBJ_TYPE::BULLET; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
+	{
+		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter_map = m_pMapObj.find((OBJ::OBJ_TYPE)i);
+		if (iter_map == m_pMapObj.end())
+			continue;
+
+		for (list<CObject*>::iterator it = iter_map->second.begin(); it != iter_map->second.end();)
+		{
+			if ((*it)->ReturnObjState() == OBJ_COLLISION)
+			{
+				it = iter_map->second.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
 }
 
 void CObjectManager::Render()
@@ -123,4 +160,15 @@ void CObjectManager::Render()
 std::map<OBJ::OBJ_TYPE, std::list<CObject*>>* CObjectManager::GetPointObjMap()
 {
 	return &m_pMapObj;
+}
+
+list<CObject*>* CObjectManager::GetMapKey(OBJ::OBJ_TYPE key)
+{
+	
+		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter = m_pMapObj.find(key);
+
+		if (iter == m_pMapObj.end())
+			return nullptr;
+
+		return &(*iter).second;
 }

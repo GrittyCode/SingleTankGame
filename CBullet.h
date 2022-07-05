@@ -12,5 +12,7 @@ public:
 	void Render(HDC hdc);
 private:
 	float m_radius = 10.0f;
+	float m_fliveTime = 2.0f;
+	float m_curTime = 0.0f;
 };
 

@@ -37,6 +37,7 @@ public:
 //LIFE CYCLE
 public :
 	void Init() {};
+	void Render(HDC hdc) { return; }
 	int Update();
 	int LateUpdate();
 private:

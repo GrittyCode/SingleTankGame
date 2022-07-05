@@ -6,6 +6,7 @@ public:
 	CircleCollider2D() { SetColliderType(COLLIDER_TYPE::BOX_COLLIDER); m_radius = 1.0f; m_Object = nullptr; }
 	CircleCollider2D(float radius, CObject* obj);
 	~CircleCollider2D() {};	
+	float GetRadius();
 //LIFE CYCLE
 public:
 	void Init() {};
