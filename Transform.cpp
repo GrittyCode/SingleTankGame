@@ -9,6 +9,13 @@ Transform2D::Transform2D(Vector2 posVec, Vector2 sizeVec)
 	SetLookVec(m_fAngle);
 }
 
+Transform2D::Transform2D(Vector2 posVec, Vector2 sizeVec, Vector2 lookVec)
+{
+	m_posVec = posVec;
+	m_SizeVec = sizeVec;
+	m_LookVec = lookVec;
+}
+
 Transform2D::Transform2D(Vector2 posVec, float xSize, float ySize,  float fAngle, float fSpeed)
 {
 	m_posVec = posVec;
@@ -52,7 +59,7 @@ void Transform2D::SetSpeed(float speed)
 	m_fSpeed = speed;
 }
 
-void Transform2D::SetPosition(int x, int y)
+void Transform2D::SetPosition(float x, float y)
 {
 	m_posVec.x = x;
 	m_posVec.y = y;
@@ -82,13 +89,21 @@ void Transform2D::SetLookVec(float fangle)
 {
 	m_fAngle += fangle;
 	m_LookVec.x = cosf(DEGREETORADIAN(m_fAngle));
-	m_LookVec.y = sinf(DEGREETORADIAN(m_fAngle));
+	m_LookVec.y = -1 * sinf(DEGREETORADIAN(m_fAngle));
+}
+
+void Transform2D::SetLookVec(Vector2 lookVec)
+{
+	m_LookVec = lookVec;
 }
 
 void Transform2D::MoveToLookVec()
 {
-	m_posVec.x += m_LookVec.x * m_fSpeed;
-	m_posVec.y += m_LookVec.y * m_fSpeed;
+	if (m_fSpeed != 0.0f)
+	{
+		m_posVec.x += m_LookVec.x * m_fSpeed * TimeManager::GetInst()->GetDeltaTime();
+		m_posVec.y += m_LookVec.y * m_fSpeed * TimeManager::GetInst()->GetDeltaTime();
+	}
 }
 
 Vector2 Transform2D::GetPosition() const
@@ -144,4 +159,15 @@ float Transform2D::GetSizeY() const
 float Transform2D::GetAngle() const
 {
 	return m_fAngle;
+}
+
+int Transform2D::Update()
+{
+	MoveToLookVec();
+	return 0;
+}
+
+int Transform2D::LateUpdate()
+{
+	return 0;
 }

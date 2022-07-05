@@ -15,7 +15,7 @@ CBrick::CBrick(Vector2 vecPos, Vector2 vecSize)
 
 CBrick::~CBrick()
 {
-
+	delete this;
 }
 
 void CBrick::Init()

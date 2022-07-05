@@ -21,8 +21,10 @@ class CObject
 //METHOD
 public:
 	CObject();
+	~CObject();
 	CObject(HDC hdc);
 	bool AddComponent(wstring key, Component* component);
+	map<wstring, Component*>* GetComponentList();
 	Transform2D* GetTransform();
 //LIFECYCLE
 public:
@@ -35,6 +37,7 @@ protected:
 	OBJ::OBJ_TYPE m_type;
 	map<wstring ,Component*> m_componentMap;
 	Transform2D* transform = nullptr;
+	int m_Obj_Collision = OBJ_NOEVENT;
 };
 
 	

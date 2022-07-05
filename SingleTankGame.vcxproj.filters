@@ -30,6 +30,12 @@
     <Filter Include="06_Component\Collider">
       <UniqueIdentifier>{47102667-f44f-4ddc-bd48-b6aeabe19668}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07_TimeManager">
+      <UniqueIdentifier>{5344fcd9-391f-4588-9a0f-fefeea1bda49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08_CollisionManager">
+      <UniqueIdentifier>{03d4ed66-76f5-4baa-92e8-9ff644173461}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -71,9 +77,6 @@
     <ClInclude Include="stdfx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Collider2D.h">
-      <Filter>06_Component\Collider</Filter>
-    </ClInclude>
     <ClInclude Include="BoxCollider2D.h">
       <Filter>06_Component\Collider</Filter>
     </ClInclude>
@@ -85,6 +88,21 @@
     </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>04_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollider2D.h">
+      <Filter>06_Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider2D.h">
+      <Filter>06_Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>07_TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>04_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>08_CollisionManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +151,18 @@
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>04_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider2D.cpp">
+      <Filter>06_Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>07_TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>04_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>08_CollisionManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

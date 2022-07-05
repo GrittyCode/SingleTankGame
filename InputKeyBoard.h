@@ -1,4 +1,7 @@
 #pragma once
+#define  KEY_LEFT 0x00000001
+#define  KEY_RIGHT 0x00000010
+#define  KEY_SPACE 0x00000100
 class InputKeyBoard : public Component
 {
 public:
@@ -24,5 +27,6 @@ public:
 private:
 	static char m_str[256];
 	int m_KeyState = -1;
+	DWORD iKeyInput = 0x00000000;
 };
 

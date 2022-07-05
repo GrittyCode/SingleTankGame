@@ -15,27 +15,7 @@ int BoxCollider2D::Update()
 
 int BoxCollider2D::LateUpdate()
 {
+	
 	return 0;
 
-}
-
-bool BoxCollider2D::CollisionWith(Collider2D* col)
-{
-	switch (col->GetColliderType())
-	{
-		//rect기준으로 충돌 처리
-	case Collider2D::COLLIDER_TYPE::BOX_COLLIDER:
-	{
-	}
-	break;
-	//원과 박스의 충돌
-	case Collider2D::COLLIDER_TYPE::CIRCLE_COLLIDER:
-		break;
-
-	default:
-		return false;
-		break;
-	}
-
-	return false;
 }

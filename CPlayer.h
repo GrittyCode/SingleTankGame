@@ -6,7 +6,7 @@ class CObject;
 class CPlayer : public CObject
 {
 public:
-	CPlayer() {};
+	CPlayer() { delete this; };
 	CPlayer(Vector2 posVec, Vector2 sizeVec);
 	~CPlayer() {}
 public:
@@ -20,6 +20,8 @@ private:
 	int m_Key;
 	float m_Xsize = 10;
 	float m_Ysize = 100;
-
+	float m_fdelayTime = 0.2f;
+	float m_curTime = 0.0f;
+	Vector2 bench;
 };
 

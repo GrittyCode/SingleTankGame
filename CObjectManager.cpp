@@ -6,7 +6,7 @@ CObjectManager* CObjectManager::m_pInst = nullptr;
 
 void CObjectManager::Init(HWND hWnd)
 {
-	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
+	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
 	SetWindowPos(hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 	m_hwnd = hWnd;
 	m_hdc = GetDC(m_hwnd);
@@ -21,9 +21,25 @@ void CObjectManager::Init(HWND hWnd)
 
 void CObjectManager::LateInit()
 {
-	//Brick Instance
+	//Bullet Instance
 
-	map <OBJ::OBJ_TYPE, list<CObject*>>::iterator it = m_pMapObj.find(OBJ::OBJ_TYPE::BRICK);
+	map <OBJ::OBJ_TYPE, list<CObject*>>::iterator it = m_pMapObj.find(OBJ::OBJ_TYPE::BULLET);
+	if (it == m_pMapObj.end())
+	{
+		m_pMapObj.insert({ OBJ::OBJ_TYPE::BULLET, list<CObject*>() });
+		it = m_pMapObj.find(OBJ::OBJ_TYPE::BULLET);
+	}
+	
+	//Monster Instance
+	it = m_pMapObj.find(OBJ::OBJ_TYPE::ENEMY);
+	if (it == m_pMapObj.end())
+	{
+		m_pMapObj.insert({ OBJ::OBJ_TYPE::ENEMY, list<CObject*>() });
+		it = m_pMapObj.find(OBJ::OBJ_TYPE::ENEMY);
+	}
+	
+	//Brick Instance
+	it = m_pMapObj.find(OBJ::OBJ_TYPE::BRICK);
 	if (it == m_pMapObj.end())
 	{
 		m_pMapObj.insert({ OBJ::OBJ_TYPE::BRICK, list<CObject*>() });
@@ -52,7 +68,29 @@ void CObjectManager::LateInit()
 
 void CObjectManager::Update()
 {
+	TimeManager::GetInst()->Update();
 	player->Update();
+	curTime += TimeManager::GetInst()->GetDeltaTime();
+
+	if (curTime >= delayTime)
+	{
+		int randomX = rand() % (rt.right - 80) + 80;
+		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter_map = m_pMapObj.find(OBJ::OBJ_TYPE::ENEMY);
+		(*iter_map).second.push_back(CMonster::Create(Vector2(randomX,rt.top + 100), Vector2(0.0f, 1.0f), 100.0f));
+		curTime = 0.0f;
+	}
+
+	for (int i = (int)OBJ::OBJ_TYPE::BULLET; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
+	{
+		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter_map = m_pMapObj.find((OBJ::OBJ_TYPE)i);
+		if (iter_map == m_pMapObj.end())
+			continue;
+
+		for (list<CObject*>::iterator it = iter_map->second.begin(); it != iter_map->second.end(); ++it)
+		{
+			(*it)->Update();
+		}
+	}
 }
 
 void CObjectManager::LateUpdate()
@@ -62,12 +100,12 @@ void CObjectManager::LateUpdate()
 
 void CObjectManager::Render()
 {
-	Rectangle(m_hdc, -1, -1, rt.right + 1, rt.bottom + 1);
+	Rectangle(m_hBitDC, -1, -1, rt.right + 1, rt.bottom + 1);
 
-	player->Render(m_hdc);
+	player->Render(m_hBitDC);
 
 
-	for (int i = (int)OBJ::OBJ_TYPE::BRICK; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
+	for (int i = (int)OBJ::OBJ_TYPE::BULLET; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
 	{
 		map<OBJ::OBJ_TYPE, list<CObject*>>::iterator iter_map = m_pMapObj.find((OBJ::OBJ_TYPE)i);
 		if (iter_map == m_pMapObj.end())
@@ -75,14 +113,14 @@ void CObjectManager::Render()
 
 		for(list<CObject*>::iterator it = iter_map->second.begin(); it != iter_map->second.end(); ++it)
 		{
-			(*it)->Render(m_hdc);
+			(*it)->Render(m_hBitDC);
 		}
 	}
 
-	//BitBlt(m_hdc, 0, 0, rt.right, rt.bottom, m_hBitDC, 0, 0, SRCCOPY);
+	BitBlt(m_hdc, 0, 0, rt.right, rt.bottom, m_hBitDC, 0, 0, SRCCOPY);
 }
 
-std::map<OBJ::OBJ_TYPE, std::list<CObject*>> CObjectManager::GetPointObjMap()
+std::map<OBJ::OBJ_TYPE, std::list<CObject*>>* CObjectManager::GetPointObjMap()
 {
-	return std::map<OBJ::OBJ_TYPE, std::list<CObject*>>();
+	return &m_pMapObj;
 }

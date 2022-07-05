@@ -1,5 +1,4 @@
 #pragma once
-#include <cmath>
 
 typedef struct MyVector2
 {

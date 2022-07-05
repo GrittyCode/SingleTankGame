@@ -9,6 +9,14 @@ CObject::CObject()
 	transform = dynamic_cast<Transform2D*>((*it).second);
 }
 
+CObject::~CObject()
+{
+	delete transform;
+}
+map<wstring, Component*>* CObject::GetComponentList()
+{
+	return &m_componentMap;
+}
 //componet insert method
 bool CObject::AddComponent(wstring key, Component* component)
 {

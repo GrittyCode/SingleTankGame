@@ -2,9 +2,15 @@
 // SingleTankGame.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
+//#define _CRTDBG_MAP_ALLOC
+//#include <crtdbg.h>
+//#define DEBUG_NEW new(_NORMAL_BLOCK, THIS_FILE, __LINE__ )
+
+
 #include "stdfx.h"
 #include "SingleTankGame.h"
 #include "CObjectManager.h"
+#include "TimeManager.h"
 
 #define MAX_LOADSTRING 100
 
@@ -19,7 +25,6 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 HWND g_hWnd;
 
 
-
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -31,7 +36,6 @@ void   Update();
 void   LateUpdate();
 void   Render();
 
-
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -39,7 +43,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
- 
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     // TODO: 여기에 코드를 입력합니다.
 
     // 전역 문자열을 초기화합니다.
@@ -53,9 +57,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
+    srand(time(NULL));
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_SINGLETANKGAME));
 
     MSG msg;
+
+    TimeManager::GetInst();
+    TimeManager::GetInst()->Init();
+
     CObjectManager::GetInst();
     CObjectManager::GetInst()->Init(g_hWnd);
     CObjectManager::GetInst()->LateInit();

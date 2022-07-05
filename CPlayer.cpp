@@ -1,12 +1,14 @@
 #include "stdfx.h"
+
 #include "CPlayer.h"
+#include "TimeManager.h"
+
 
 CPlayer::CPlayer(Vector2 posVec, Vector2 sizeVec)
 {
 	transform->SetPosition(posVec);
 	transform->SetSizeVec(sizeVec);
 	transform->SetLookVec(90.0f);
-
 }
 
 void CPlayer::Init()
@@ -22,32 +24,42 @@ CPlayer* CPlayer::Create(Vector2 posVec, Vector2 sizeVec)
 
 int CPlayer::Update()
 {
+	m_curTime += TimeManager::GetInst()->GetDeltaTime();
 	for (map<wstring, Component*>::iterator it = m_componentMap.begin(); it != m_componentMap.end(); ++it)
 	{
 		if ((*it).first == L"InputKeyBoard")
 		{
 			m_Key = (*it).second->Update();
 
-			switch (m_Key)
+			if ((m_Key & KEY_RIGHT) == KEY_RIGHT)
 			{
-			case (int)InputKeyBoard::KEY_STATE::LEFT_ARROW:
-				if(transform->GetLookVec().x < 180)
-				transform->SetLookVec(1.0f);
-				m_Key = (int)InputKeyBoard::KEY_STATE::KEY_STATE_END;
-				break;
-			case (int)InputKeyBoard::KEY_STATE::RIGHT_ARROW:
-				if(transform->GetLookVec().x > 0)
-					transform->SetLookVec(-1.0f);
-				m_Key = (int)InputKeyBoard::KEY_STATE::KEY_STATE_END;
-				break;
-			case (int)InputKeyBoard::KEY_STATE::SPACE:
+				if (transform->GetAngle() < 179.0f)
+					transform->SetLookVec(0.1f);
+			}
+
+			if ((m_Key & KEY_LEFT) == KEY_LEFT)
+			{
+				if (transform->GetAngle() > 1.0f)
+					transform->SetLookVec(-0.1f);
+			}
+
+			if ((m_Key & KEY_SPACE) == KEY_SPACE)
+			{
 				m_Key = (int)InputKeyBoard::KEY_STATE::SPACE;
-				break;
-			default:
+
+				if (m_curTime >= m_fdelayTime)
+				{
+					map <OBJ::OBJ_TYPE, list<CObject*>>::iterator it;
+					it = CObjectManager::GetInst()->GetPointObjMap()->find(OBJ::OBJ_TYPE::BULLET);
+					(*it).second.push_back(CBullet::Create(bench, transform->GetLookVec(), 400.0f));
+					m_curTime = 0.0f;
+				}
+			}
+			else
+			{
 				m_Key = (int)InputKeyBoard::KEY_STATE::KEY_STATE_END;
 				break;
 			}
-
 		}
 		else
 		{
@@ -72,22 +84,15 @@ void CPlayer::Render(HDC hdc)
 {
 	Vector2 posVec = transform->GetPosition();
 	float radius = transform->GetRadius();
-	Vector2 bench = (transform->GetLookVec() * radius);
-	Vector2 position[4];
-	for (int i = 0; i < 4; ++i)
-	{
-		position[i].x = bench.x + cosf(DEGREETORADIAN(transform->GetAngle() + (90 * i)));
-		position[i].y = bench.y + sinf(DEGREETORADIAN(transform->GetAngle() + (90 * i)));
-	}
+	bench = (transform->GetLookVec() * radius) + posVec;
 
-	MoveToEx(hdc, position[0].x, position[0].y, NULL);
-	for (int i = 1; i < 4; ++i)
-	{
-		LineTo(hdc, position[i].x, position[i].y);
-	}
-	LineTo(hdc, position[0].x, position[0].y);
+	MoveToEx(hdc, bench.x, bench.y, nullptr);
+
+	bench = (transform->GetLookVec() * 1.5f * radius) + posVec;
+
+	LineTo(hdc, bench.x, bench.y);
 
 
-	Ellipse(hdc, posVec.x - radius, posVec.y - radius, posVec.x + radius, posVec.y + radius);
+	Ellipse(hdc, (int)(posVec.x - radius), (int)(posVec.y - radius), (int)(posVec.x + radius), (int)(posVec.y + radius));
 	
 }

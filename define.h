@@ -1,15 +1,13 @@
 #pragma once
 
-#define _USE_MATH_DEFINES
-#include <math.h>
 
-#define DEGREETORADIAN(t) ((t) * M_PI / 180.0)
-#define RADIANTODEGREE(t) ((180.0 / M_PI) * (t))
+#define DEGREETORADIAN(t) ((t) * (float)M_PI / (float)180.0f)
+#define RADIANTODEGREE(t) (((float)180.0f / (float)M_PI) * (t))
 
 
 #define OBJ_ERR -1
 #define OBJ_NOEVENT 0
-#define OBJ_DEAD 1
+#define OBJ_COLLISION 1
 
 
 

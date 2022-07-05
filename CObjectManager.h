@@ -15,8 +15,10 @@ public:
 
 	HDC m_hdc;
 	HWND m_hwnd;
-	map <OBJ::OBJ_TYPE,list<CObject*>> GetPointObjMap();
+	map <OBJ::OBJ_TYPE,list<CObject*>>* GetPointObjMap();
 private:
+	float delayTime = 1.2f;
+	float curTime = 0.0f;
 	map <OBJ::OBJ_TYPE, list<CObject*>> m_pMapObj;
 	CPlayer* player;
 	RECT rt = { 0,0,1280,720 };

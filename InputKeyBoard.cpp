@@ -5,7 +5,7 @@
 int InputKeyBoard::Update()
 {
 	m_KeyState = KeyEventUpdate();
-	return m_KeyState;
+	return iKeyInput;
 }
 
 int InputKeyBoard::LateUpdate()
@@ -19,20 +19,22 @@ void InputKeyBoard::Init()
 
 int InputKeyBoard::KeyEventUpdate()
 {
+	iKeyInput = 0;
+
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
-		return (int)KEY_STATE::RIGHT_ARROW;
+		iKeyInput |= 0x00000001;
 	}
 
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		return (int)KEY_STATE::LEFT_ARROW;
+		iKeyInput |= 0x00000010;
 	}
 
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
-		return (int)KEY_STATE::SPACE;
+		iKeyInput |= 0x00000100;
 	}
 
-	return -1;
+	return iKeyInput;
 }

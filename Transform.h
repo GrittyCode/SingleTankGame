@@ -6,6 +6,7 @@ class Transform2D : public Component
 public:
 	Transform2D() {};
 	Transform2D(Vector2 posVec, Vector2 sizeVec);
+	Transform2D(Vector2 posVec, Vector2 sizeVec, Vector2 lookVec);
 	Transform2D(Vector2 posVec, float xSize, float ySize, float fAngle, float fSpeed);
 	Transform2D(float x, float y, float xSize, float ySize, float fAngle, float fSpeed);
 	/// <summary>
@@ -14,12 +15,13 @@ public:
 	Transform2D* Create(Vector2 posVec, float xSize, float ySize, float fAngle, float fSpeed);
 	Transform2D* Create(float x, float y, float xSize, float ySize, float fAngle, float fSpeed);
 	void SetSpeed(float speed);
-	void SetPosition(int x, int y);
+	void SetPosition(float x, float y);
 	void SetPosition(Vector2 vec);
 	void SetSizeVec(Vector2 vec);
 	void SetSizeVec(float xSize, float ySize);
 	Vector2 GetLookVec();
 	void SetLookVec(float fangle);
+	void SetLookVec(Vector2 lookVec);
 	void MoveToLookVec();
 	Vector2 GetPosition() const;
 	Vector2 GetRotation() const;
@@ -35,8 +37,8 @@ public:
 //LIFE CYCLE
 public :
 	void Init() {};
-	int Update() { return 0; };
-	int LateUpdate() { return 0; };
+	int Update();
+	int LateUpdate();
 private:
 	//À§Ä¡ º¤ÅÍ
 	Vector2 m_posVec;
