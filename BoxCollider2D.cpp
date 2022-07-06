@@ -33,5 +33,5 @@ int BoxCollider2D::LateUpdate()
 
 void BoxCollider2D::Render(HDC hdc)
 {
-	Rectangle(hdc, ReturnMyVecPos().x - m_fxSize, ReturnMyVecPos().y - m_fySize, ReturnMyVecPos().x + m_fxSize, ReturnMyVecPos().y + m_fySize);
+	//Rectangle(hdc, ReturnMyVecPos().x - m_fxSize, ReturnMyVecPos().y - m_fySize, ReturnMyVecPos().x + m_fxSize, ReturnMyVecPos().y + m_fySize);
 }

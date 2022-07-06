@@ -4,7 +4,7 @@
 
 CMonster::CMonster(Vector2 posVec, Vector2 lookVec, float m_speed)
 {
-	transform->SetSizeVec(70.0f, 70.0f);
+	transform->SetSizeVec(30.0f, 30.0f);
 	transform->SetPosition(posVec);
 	transform->SetLookVec(lookVec);
 	transform->SetSpeed(m_speed);
@@ -65,8 +65,8 @@ void CMonster::Render(HDC hdc)
 
 	for (int i = 0; i < 5 * 2; i += 2)
 	{
-		float x = (cosf(DEGREETORADIAN(fDegree)) * transform->GetRadius() * 0.5f);
-		float y = (sinf(DEGREETORADIAN(fDegree)) * transform->GetRadius() * 0.5f);
+		float x = (cosf(DEGREETORADIAN(fDegree)) * transform->GetRadius() );
+		float y = (sinf(DEGREETORADIAN(fDegree)) * transform->GetRadius() );
 
 		pStarArr[i] = { transform->GetPositionX() + x , transform->GetPositionY() + y };
 
@@ -75,7 +75,7 @@ void CMonster::Render(HDC hdc)
 
 	fDegree = degree + (fDegreeInterval * 0.5f);
 	float distance =
-		(cosf(DEGREETORADIAN(fDegreeInterval)) * transform->GetRadius() * 0.5f) / cosf(DEGREETORADIAN(fDegreeInterval * 0.5f));
+		(cosf(DEGREETORADIAN(fDegreeInterval)) * transform->GetRadius()) / cosf(DEGREETORADIAN(fDegreeInterval));
 
 	for (int i = 1; i < 5 * 2; i += 2)
 	{

@@ -113,7 +113,7 @@ void CObjectManager::LateUpdate()
 
 	//충돌 처리 플래그 
 	CCollisionManager::GetInst()->LateUpdate(OBJ::OBJ_TYPE::BULLET, OBJ::OBJ_TYPE::ENEMY);
-	//CCollisionManager::GetInst()->LateUpdate(OBJ::OBJ_TYPE::ENEMY, OBJ::OBJ_TYPE::BRICK);
+	CCollisionManager::GetInst()->LateUpdate(OBJ::OBJ_TYPE::ENEMY, OBJ::OBJ_TYPE::BRICK);
 
 	for (int i = (int)OBJ::OBJ_TYPE::BULLET; i < (int)OBJ::OBJ_TYPE::OBJ_TYPE_END; ++i)
 	{

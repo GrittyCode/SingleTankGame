@@ -94,6 +94,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     return (int) msg.wParam;
 }
 
+void Update()
+{
+    CObjectManager::GetInst()->Update();
+}
+
+void LateUpdate()
+{
+    CObjectManager::GetInst()->LateUpdate();
+
+}
+
+void Render()
+{
+    CObjectManager::GetInst()->Render();
+
+}
 
 
 //
@@ -221,21 +237,4 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
-}
-
-void Update()
-{
-    CObjectManager::GetInst()->Update();
-}
-
-void LateUpdate()
-{
-    CObjectManager::GetInst()->LateUpdate();
-
-}
-
-void Render()
-{
-    CObjectManager::GetInst()->Render();
-
 }

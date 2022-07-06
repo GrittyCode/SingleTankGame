@@ -9,8 +9,8 @@ CBrick::CBrick(Vector2 vecPos, Vector2 vecSize)
 	 transform->SetPosition(vecPos);
 	 transform->SetSizeVec(vecSize.x, vecSize.y);
 	 AddComponent(L"BoxCollide2D", new BoxCollider2D(transform->GetSizeVec().x, transform->GetSizeVec().y, this));
+	 //AddComponent(L"CircleCollide2D", new CircleCollider2D(transform->GetRadius(), this));
 }
-
 
 CBrick::~CBrick()
 {
