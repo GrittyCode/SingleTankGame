@@ -157,6 +157,11 @@ void CObjectManager::Render()
 	BitBlt(m_hdc, 0, 0, rt.right, rt.bottom, m_hBitDC, 0, 0, SRCCOPY);
 }
 
+void CObjectManager::Release()
+{
+	delete GetInst();
+}
+
 std::map<OBJ::OBJ_TYPE, std::list<CObject*>>* CObjectManager::GetPointObjMap()
 {
 	return &m_pMapObj;

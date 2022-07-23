@@ -211,6 +211,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
+        CObjectManager::GetInst()->Release();
         break;
     case WM_KEYDOWN:
     default:

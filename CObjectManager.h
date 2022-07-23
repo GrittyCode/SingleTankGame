@@ -11,6 +11,7 @@ public:
 	void Update();
 	void LateUpdate();
 	void Render();
+	void Release();
 	HDC m_hdc;
 	HWND m_hwnd;
 	map <OBJ::OBJ_TYPE,list<CObject*>>* GetPointObjMap();
